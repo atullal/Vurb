@@ -25,9 +25,10 @@ class SearchView(TemplateView):
         context = super(SearchView, self).get_context_data(**kwargs)
         query = self.request.GET.get('search_box')
         if query:
-            context['articles'] = Article.objects.filter(keywords__contains=query)
+            context['articles'] = Article.objects.filter(keywords__icontains=query)
 
         return context
+
 class ArticleDetails(TemplateView):
     template_name = 'details.html'
 
